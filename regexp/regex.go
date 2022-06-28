@@ -2,14 +2,14 @@ package main
 
 import (
 	"github.com/sirupsen/logrus"
-	regexp "regexp"
+	"regexp"
 )
 
-func main()  {
+func main() {
 	findStringSubmatch()
 }
 
-func findStringSubmatch()  {
+func findStringSubmatch() {
 	//jmsfServicePrefix := "jmesh/services/meshgroup/%s/namespace/"
 	jmsfServicePattern := "jmesh/meshgroup/(.*)/namespace/(.*)/service/(.*)/application"
 	k1 := "jmesh/meshgroup/mesh01/namespace/ns1/service/demo1"
