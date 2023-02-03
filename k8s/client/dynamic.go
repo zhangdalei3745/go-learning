@@ -11,7 +11,7 @@ import (
 	"log"
 )
 
-var kubeconfig = flag.String("kubeconfig", "/Users/zhangdalei/.kube/config", "absolute path to the kube config file")
+var kubeconfig = flag.String("kubeconfig", "/Users/zhangdalei/git/git.jd.com/doc/kubeconfig/jvessel/51-new", "absolute path to the kube config file")
 
 func main() {
 	log.SetFlags(log.Llongfile)
@@ -24,9 +24,15 @@ func main() {
 	if err != nil {
 		return
 	}
-	data, err := dynamicClient.Resource(schema.GroupVersionResource{Version: "v1", Resource: "Service"}).Namespace("default").Get(context.TODO(), "httpbin", metav1.GetOptions{})
+	data, err := dynamicClient.Resource(schema.GroupVersionResource{Version: "v1", Resource: "secrets"}).Namespace("mesh").Get(context.TODO(), "mesh", metav1.GetOptions{})
 	if err != nil {
 		return
 	}
+
+	data, err = dynamicClient.Resource(schema.GroupVersionResource{Resource: "jmsfoperators", Group: "install.jmsf.jd.com", Version: "v1"}).Namespace("mesh").Get(context.TODO(), "demo", metav1.GetOptions{})
+	if err != nil {
+		return
+	}
+
 	logrus.Debugf("data is %s", data)
 }

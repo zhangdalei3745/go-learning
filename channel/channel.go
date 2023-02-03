@@ -21,7 +21,7 @@ func main() {
 }
 
 //只能向chan里写数据
-func send(c chan int) {
+func send(c chan<- int) {
 	for i := 0; i < 20; i++ {
 		fmt.Println("通道写取数据：", i, "写入时间：", fmt.Sprintf(time.Unix(time.Now().Unix(), 0).String()))
 		c <- i
@@ -29,7 +29,7 @@ func send(c chan int) {
 }
 
 //只能取channel中的数据
-func receive(c chan int) {
+func receive(c <-chan int) {
 	for i := 0; i < 20; i++ {
 		time.Sleep(time.Second)
 		data := <-c
